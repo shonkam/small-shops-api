@@ -66,7 +66,7 @@ export const typeDefs = gql`
       country: String!
     ): RequestSuccessful
 
-    deleteStore: Message
+    deleteStore: RequestSuccessful
 
     loginStore(
       email: String!
@@ -124,14 +124,13 @@ export const resolvers = {
         throw new AuthenticationError('not authorized')
       }
       try {
-        console.log('ON STORE')
         const store = context.currentStore
-        console.log(store)
         await Store.findByIdAndDelete(store.id)
 
-        return { message: 'Store was successfully deleted' }
+        return { successful: true }
       } catch (error) {
         console.log('an error occurred while deleting store', error)
+        return { successful: false }
       }
     },
 

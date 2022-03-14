@@ -1,6 +1,5 @@
 import { gql } from 'apollo-server'
 import { AuthenticationError } from 'apollo-server'
-import Store from '../mongooseModels/storeModel.js'
 import Product from '../mongooseModels/productModel.js'
 
 export const typeDefs = gql`
@@ -94,11 +93,7 @@ export const resolvers = {
           productPictureURL: args.productPictureURL,
           productStore: context.currentStore.id
         })
-        const savedProduct = await newProduct.save()
-
-        const addingStore = await Store.findOne({ _id: context.currentStore.id })
-        addingStore.products = addingStore.products.concat(savedProduct)
-        await addingStore.save()
+        await newProduct.save()
 
         return { successful: true }
       }
