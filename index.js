@@ -5,5 +5,5 @@ import connectToMongoDB from './src/connectToMongoDB.js'
 await connectToMongoDB()
 
 server.listen({ port: PORT }).then(({ url }) => {
-  console.log(`🚀 Server ready at ${url}graphql`)
+  console.log(`Server ready at ${url}graphql`)
 })

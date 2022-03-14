@@ -8,5 +8,5 @@ export const MONGO_URI = (process.env.NODE_ENV === 'test'
 
 export const PORT = (process.env.NODE_ENV === 'test'
   ? process.env.TEST_PORT
-  : process.env.PROD_PORT
+  : process.env.PORT
 )
